@@ -1,0 +1,8 @@
+<?php 
+
+Class User {
+    public string $FirstName;
+    public string $LastName;
+    Public string 
+
+}

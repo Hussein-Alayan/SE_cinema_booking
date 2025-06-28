@@ -1,0 +1,4 @@
+<? php 
+
+$host = 'localhost';
+$user = 
