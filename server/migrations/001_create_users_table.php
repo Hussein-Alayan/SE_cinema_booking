@@ -9,7 +9,10 @@ $query = "CREATE TABLE IF NOT EXISTS users (
     mobile VARCHAR(20) NOT NULL UNIQUE,
     password_hash VARCHAR(255) NOT NULL,
     date_of_birth DATE NOT NULL,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    max_tickets_per_period INT DEFAULT NULL,
+    ticket_period_days INT DEFAULT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 )";
 
 $execute = $mysqli->prepare($query);

@@ -8,7 +8,10 @@ $query = "CREATE TABLE IF NOT EXISTS movies (
     duration_minutes SMALLINT NOT NULL,
     release_date DATE,
     trailer_url VARCHAR(500),
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    description TEXT,
+    poster_url VARCHAR(500),
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 )";
 
 $execute = $mysqli->prepare($query);
