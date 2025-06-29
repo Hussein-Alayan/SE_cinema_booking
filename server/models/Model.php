@@ -11,7 +11,7 @@ abstract class Model
     {
         static::$connection = $conn;
     }
-    
+
     public function __construct(array $attributes)
     {
         $this->attributes = $attributes;
@@ -28,9 +28,7 @@ abstract class Model
         $this->attributes[$key] = $value;
     }
 
-    protected function syncToAttributes(): void
-    {
-    }
+    protected function syncToAttributes(): void {}
 
     // find a record by its primary key and return a object
     public static function find(int $id): ?static
@@ -129,8 +127,8 @@ abstract class Model
 
         $columns   = array_keys($data);
 
-         //converts an array of column names into a string like "column1 = ?, column2 = ?" for the SQL statement.
-        $setClause = implode( 
+        //converts an array of column names into a string like "column1 = ?, column2 = ?" for the SQL statement.
+        $setClause = implode(
             ', ',
             array_map(fn($col) => "$col = ?", $columns)
         );
@@ -179,5 +177,11 @@ abstract class Model
         $stmt = static::$connection->prepare($sql);
         $stmt->bind_param('i', $id);
         return $stmt->execute();
+    }
+
+
+    public function toArray(): array
+    {
+        return $this->attributes;
     }
 }

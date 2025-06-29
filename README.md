@@ -1,5 +1,5 @@
 fully-featured Smart Cinema Booking Platform using HTML, CSS, JavaScript, PHP, and MySQL. Below is the requirements list that defines the scope of this project:
-Allow customers to register via email, mobile number, or social logins.
+Allow customers to register via email, mobile number.
 Age checks (uploading ID or using an age-verification API) for restricted-rating films.
 Users can view and update personal details, favorite genres, payment methods, and communication preferences.
 Enforce ticket-purchase caps per account
