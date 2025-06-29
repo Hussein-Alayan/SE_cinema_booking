@@ -1,5 +1,5 @@
 <?php
-require("../connection/config.php");
+require(__DIR__ . '/../connection/config.php');
 
 $query = "CREATE TABLE IF NOT EXISTS seat_locks (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -7,7 +7,7 @@ $query = "CREATE TABLE IF NOT EXISTS seat_locks (
     seat_id INT NOT NULL,
     locked_by_booking INT,
     locked_by_user INT NOT NULL,
-    status VARCHAR(20) DEFAULT 'locked',
+    status ENUM('locked','released','converted') DEFAULT 'locked',
     expires_at DATETIME NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
