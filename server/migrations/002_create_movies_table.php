@@ -1,5 +1,5 @@
 <?php
-require("../connection/config.php");
+require(__DIR__ . '/../connection/config.php');
 
 $query = "CREATE TABLE IF NOT EXISTS movies (
     id INT AUTO_INCREMENT PRIMARY KEY,
