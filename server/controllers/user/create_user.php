@@ -1,31 +1,43 @@
 <?php
-require_once("../../bootstrap.php");
+require_once(__DIR__ . "/../BaseController.php");
 
-header('Content-Type: application/json'); //ensure json is returned 
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') { // error if post request is not made
-    http_response_code(405);
-    echo json_encode(['error' => 'Method not allowed']);
-    exit;
+class CreateUserController extends BaseController
+{
+    protected function setAllowedMethods()
+    {
+        $this->allowedMethods = ['post'];
+    }
+
+    protected function setModelClass()
+    {
+        $this->modelClass = 'User';
+    }
+
+    protected function setRequiredFields()
+    {
+        $this->requiredFields = ['first_name', 'last_name', 'email', 'password_hash', 'mobile', 'date_of_birth'];
+    }
+
+    protected function setOptionalFields()
+    {
+        $this->optionalFields = ['address'];
+    }
+
+
+    protected function handlePost()
+    {
+        $data = $this->getRequestData();
+
+        $this->validateRequiredFields($data);
+
+        // Create user
+        $user = User::create($data);
+
+        // Return success with user data
+        $this->respondCreated($user->toArray(), 'User created successfully');
+    }
 }
 
-try {
-    $input = json_decode(file_get_contents('php://input'), true) ?: $_POST;
-
-    // Let the model do all the work!
-    $user = User::create($input);
-
-    // Return success with toArray()
-    http_response_code(201);
-    echo json_encode([
-        'success' => true,
-        'message' => 'User created successfully',
-        'user' => $user->toArray()
-    ]);
-} catch (ValidationException $e) {
-    http_response_code(400);
-    echo json_encode(['error' => $e->getMessage()]);
-} catch (Exception $e) {
-    http_response_code(500);
-    echo json_encode(['error' => 'Server error']);
-}
+$controller = new CreateUserController();
+$controller->handleRequest();
