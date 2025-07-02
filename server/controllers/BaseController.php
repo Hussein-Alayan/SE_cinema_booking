@@ -1,6 +1,6 @@
 <?php
 require_once(__DIR__ . "/../bootstrap.php");
- 
+
 
 //which HTTP methods you support
 //which Model you are working on
@@ -59,7 +59,7 @@ abstract class BaseController
         }
     }
 
-    
+
     protected function validateMethod()
     {
         $currentMethod = strtolower($_SERVER['REQUEST_METHOD']);
@@ -78,7 +78,7 @@ abstract class BaseController
     {
         return $_GET;
     }
-  
+
     protected function validateRequiredFields($data)
     {
         $missing = [];
