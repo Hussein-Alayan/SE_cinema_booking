@@ -1,11 +1,8 @@
 <?php
-// Load configuration
 require_once("connection/config.php");
 
-// Load exceptions
 require_once("exceptions/ValidationException.php");
 
-// Load base model
 require_once("models/Model.php");
 
 // Load all models
@@ -24,8 +21,20 @@ global $mysqli;
 Model::setConnection($mysqli);
 
 // Set error handling
-error_reporting(E_ALL);
+error_reporting(E_ALL); // report all error
 ini_set('display_errors', 0);
 
-// Set timezone
+// timezone
 date_default_timezone_set('UTC');
+
+//CORS
+if (isset($_SERVER['HTTP_ORIGIN'])) {
+    header('Access-Control-Allow-Origin: ' . $_SERVER['HTTP_ORIGIN']);
+    header('Access-Control-Allow-Credentials: true');
+    header('Access-Control-Allow-Headers: Content-Type, Authorization');
+    header('Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE');
+}
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit;
+}
