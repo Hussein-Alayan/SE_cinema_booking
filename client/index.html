@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SE Cinema Booking</title>
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/partials.css" />
+  <link rel="stylesheet" href="css/index.css" />
+</head>
+<body class="page-home">
+  <div id="navbar"></div>
+  <section class="hero container text-center mt-2 mb-2">
+    <div class="hero__content">
+      <h1>Welcome to SE Cinema Booking</h1>
+      <p class="hero__subtitle">Book your favorite movies easily, right in the heart of Beirut Digital District (BDD).</p>
+      <a href="/client/pages/login.html" class="btn btn--primary mt-1">Login to Book Now</a>
+    </div>
+    <div class="hero__image mt-2">
+      <img src="assets/images/SE_Logo.png" alt="Cinema Experience" class="hero__img" />
+    </div>
+  </section>
+<section class="browse-movies container mt-2 mb-2 flex-row">
+    <div class="browse-movies__content">
+      <h2>Browse Movies</h2>
+      <p>Discover the latest blockbusters and timeless classics. Browse our movie selection and book your seat for an amazing cinema experience in Beirut!</p>
+      <a href="#movies" class="btn btn--primary mt-1">Browse Movies</a>
+    </div>
+    <div class="browse-movies__image">
+      <img src="assets/images/browse_movies.jpg" alt="Browse Movies" class="browse-movies__img" />
+    </div>
+  </section>\
+  
+  <section class="about container text-center mb-2">
+    <h2>About SE Cinema</h2>
+    <p>Located in Beirut Digital District, SE Cinema offers a modern movie experience with comfortable seating, the latest blockbusters, and easy online booking. Join us for an unforgettable night out in the heart of Beirut!</p>
+    <p><strong>Project by:</strong> Hussein Alayan</p>
+  </section>
+
+  
+
+  <section id="movies" class="movies container"> <!-- fetching movies  -->
+  </section>
+
+  <div id="footer"></div>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="js/index.js"></script>
+</body>
+</html>
