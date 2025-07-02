@@ -1,4 +1,0 @@
-<?php
-
-//register function
-
