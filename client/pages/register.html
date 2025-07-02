@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register – SE Cinema Booking</title>
+  
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/register.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script defer src="../js/registration.js"></script>
+</head>
+<body class="page-register">
+  
+
+  <div class="container text-center">
+    <h1>Smart Cinema</h1>
+    <p class="mb-2">New here? Create an account to book your seats.</p>
+  </div>
+
+
+  <div class="form card card--elevated">
+    <form id="register-form" action="#" method="post">
+      
+      <div class="mt-1 mb-1">
+        <label for="first-name">First Name</label>
+        <input id="first-name" type="text" name="first_name" placeholder="John" required />
+      </div>
+
+      <div class="mt-1 mb-1">
+        <label for="last-name">Last Name</label>
+        <input id="last-name" type="text" name="last_name" placeholder="Doe" required />
+      </div>
+
+      <div class="mt-1 mb-1">
+        <label for="email">Email</label>
+        <input id="email" type="email" name="email" placeholder="johndoe@example.com" required />
+      </div>
+      
+      <div class="mt-1 mb-1">
+        <label for="mobile">Mobile</label>
+        <input id="mobile" type="tel" name="mobile" placeholder="+961 70653458" required />
+      </div>
+            
+      <div class="mt-1 mb-1">
+        <label for="date-of-birth">Date of Birth</label>
+        <input id="date-of-birth" type="date" name="date_of_birth" required />
+      </div>
+
+      <div class="mt-1 mb-1">
+        <label for="password">Password</label>
+        <input id="password" type="password" name="password" placeholder="••••••••" required />
+      </div>
+
+      <div class="mt-1 mb-1">
+        <label for="confirm-password">Confirm Password</label>
+        <input id="confirm-password" type="password" name="confirmPassword" placeholder="••••••••" required />
+      </div>
+
+      <button type="submit" class="btn btn--primary mt-2">Sign Up</button>
+
+     
+      <p class="message mt-1"></p>
+
+      <p class="mt-1">
+        Already have an account? <a href="login.html">Login here</a>
+      </p>
+
+    </form>
+  </div>
+
+</body>
+</html>

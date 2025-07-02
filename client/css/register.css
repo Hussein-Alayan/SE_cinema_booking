@@ -1,0 +1,21 @@
+
+.page-register {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.form {
+  
+  box-shadow: 0 4px 24px rgba(141, 194, 111, 0.15);
+}
+
+@media (max-width: 600px) {
+  .form {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+}
+  
