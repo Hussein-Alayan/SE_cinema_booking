@@ -1,4 +1,4 @@
-// register.js
+
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("register-form");
   const msg = document.querySelector(".message");
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     // Send POST request
-    axios.post("../../server/controllers/user/create_user.php", payload)
+    axios.post("http://localhost/SE_cenima_booking/server/controllers/user/create_user.php", payload)
       .then((res) => {
         if (res.data && res.data.success) {
           msg.textContent = "Registration successful! You can now log in.";

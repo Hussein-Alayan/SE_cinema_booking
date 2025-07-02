@@ -12,7 +12,11 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') { // error if post request is not mad
 try {
     $input = json_decode(file_get_contents('php://input'), true) ?: $_POST;
 
-    // Let the model do all the work!
+    //password into hashpassword
+    if (isset($input['password'])) {
+        $input['password_hash'] = password_hash($input['password'], PASSWORD_DEFAULT);
+        unset($input['password']); // Remove plain password
+    }
     $user = User::create($input);
 
     // Return success with toArray()
@@ -27,5 +31,5 @@ try {
     echo json_encode(['error' => $e->getMessage()]);
 } catch (Exception $e) {
     http_response_code(500);
-    echo json_encode(['error' => 'Server error']);
+    echo json_encode(['error' => $e->getMessage()]);
 }
