@@ -1,0 +1,187 @@
+// buttons
+.btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 3px;
+  font-size: 1rem;
+  cursor: pointer;
+  background: var(--color-blue-dark);
+  color: #fff;
+}
+
+.btn--primary {
+  background: var(--color-blue-dark);
+  color: #fff;
+}
+
+.btn--primary:hover {
+  background: var(--color-blue-light);
+}
+
+.btn--secondary {
+  background: var(--color-yellow);
+  color: #000;
+}
+
+.btn--secondary:hover {
+  background: #e2c05a;
+}
+
+input,
+select,
+textarea {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  border: 1px solid #bbb;
+  border-radius: 3px;
+  font-size: 1rem;
+  background: #fff;
+  color: #222;
+}
+
+label {
+  margin-bottom: 0.5rem;
+  display: block;
+  font-weight: 500;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--color-blue-dark);
+  outline: none;
+}
+
+// cards
+.card, .form {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 1.5rem;
+  max-width: 400px;
+  margin: 2rem auto;
+  box-shadow: none;
+  text-align: left;
+}
+
+.card__header {
+  background-color: var(--color-blue-dark);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 6px 6px 0 0;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.card__body {
+  padding: 1rem;
+}
+
+// utilities
+.text-center {
+  text-align: center;
+}
+
+.mt-1 {
+  margin-top: 1rem;
+}
+
+.mb-1 {
+  margin-bottom: 1rem;
+}
+
+.mt-2 {
+  margin-top: 2rem;
+}
+
+.mb-2 {
+  margin-bottom: 2rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.clearfix::before,
+.clearfix::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+
+//responsive 
+@media (max-width: 600px) {
+  .btn {
+    width: 100%; // ull-width buttons on small screens
+  }
+  .container {
+    padding: 0 0.5rem; //less horizontal paddin
+  }
+  .card, .form { padding: 1rem; }
+}
+
+.form {
+  position: relative;
+  z-index: 1;
+  background: #fff;
+  max-width: 400px;
+  margin: 2rem auto 100px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  border-radius: 8px;
+}
+
+.form input {
+  font-family: var(--font-base);
+  outline: 0;
+  background: #f2f2f2;
+  border: 1px solid #ccc;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 1rem;
+  border-radius: 4px;
+}
+
+.form button {
+  font-family: var(--font-base);
+  text-transform: uppercase;
+  outline: 0;
+  background: var(--color-blue-dark);
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #fff;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.form button:hover,
+.form button:active,
+.form button:focus {
+  background: var(--color-blue-light);
+}
+
+.form .message {
+  margin: 1rem 0 0;
+  color: #888;
+  font-size: 0.95rem;
+}
+
+.form .message a {
+  color: var(--color-blue-dark);
+  text-decoration: none;
+}
+  

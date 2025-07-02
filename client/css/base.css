@@ -1,0 +1,34 @@
+:root {
+    //Primary
+    --color-blue-dark: #3674B5;      
+    --color-blue-light: #578FCA;      
+   
+    //secondary
+    --color-cream: #F5F0CD;            
+    --color-yellow: #FADA7A;           
+  
+    //Spacing
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 2rem;
+  
+    // Typography
+    --font-base: sans-serif;
+  }
+
+  * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(
+    90deg,
+    rgba(141, 194, 111, 1) 0%,
+    rgba(118, 184, 82, 1) 50%
+  );
+  font-family: var(--font-base);
+  color: #222;
+}
