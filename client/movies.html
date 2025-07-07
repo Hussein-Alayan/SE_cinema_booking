@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movies – SE Cinema Booking</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/pages/movies.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script defer src="js/base.js"></script>
+  <script defer src="js/movies.js"></script>
+</head>
+<body class="page-movies">
+  <div id="navbar"></div>
+
+  <div class="container">
+    <div class="text-center mb-2">
+      <h1>Now Showing</h1>
+      <p class="subtitle">Discover the latest movies and book your seats</p>
+    </div>
+
+    <div class="movies-grid" id="movies-grid">
+      <!-- Movies will be loaded here dynamically -->
+      <div class="loading">Loading movies...</div>
+    </div>
+  </div>
+
+  <div id="footer"></div>
+</body>
+</html>

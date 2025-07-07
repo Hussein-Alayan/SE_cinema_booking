@@ -9,6 +9,7 @@ class Movie extends Model
     private int $durationMinutes;
     private $releaseDate;
     private $trailerUrl;
+    private $image; // Base64 image data
     private string $createdAt;
 
     protected static string $table = "movies";
@@ -23,6 +24,7 @@ class Movie extends Model
         $this->durationMinutes = $data["duration_minutes"];
         $this->releaseDate = $data["release_date"];
         $this->trailerUrl = $data["trailer_url"];
+        $this->image = $data["image"] ?? null;
         $this->createdAt = $data["created_at"];
     }
 
@@ -34,6 +36,7 @@ class Movie extends Model
         $this->attributes['duration_minutes'] = $this->durationMinutes;
         $this->attributes['release_date'] = $this->releaseDate;
         $this->attributes['trailer_url'] = $this->trailerUrl;
+        $this->attributes['image'] = $this->image;
         $this->attributes['created_at'] = $this->createdAt;
     }
 
@@ -61,6 +64,10 @@ class Movie extends Model
     {
         return $this->trailerUrl;
     }
+    public function getImage()
+    {
+        return $this->image;
+    }
     public function getCreatedAt()
     {
         return $this->createdAt;
@@ -85,5 +92,9 @@ class Movie extends Model
     public function setTrailerUrl($value)
     {
         $this->trailerUrl = $value;
+    }
+    public function setImage($value)
+    {
+        $this->image = $value;
     }
 }

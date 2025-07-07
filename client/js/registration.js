@@ -1,49 +1,55 @@
-
+// Registration page functionality
 document.addEventListener("DOMContentLoaded", () => {
+  // Load navbar and footer
+  Utils.loadPartials();
+  
   const form = document.getElementById("register-form");
-  const msg = document.querySelector(".message");
-
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    // Gather form values
-    const firstName = form["first-name"].value.trim();
-    const lastName  = form["last-name"].value.trim();
-    const email     = form["email"].value.trim();
-    const password  = form["password"].value;
-    const confirm   = form["confirm-password"].value;
-    const mobile    = form["mobile"].value.trim();
-    const dob       = form["date-of-birth"].value;   
-
-    // Simple password match check
-    if (password !== confirm) {
-      msg.textContent = "Passwords do not match.";
-      return;
-    }
-
-    // Build the data object
-    const payload = {
-      first_name:    firstName,
-      last_name:     lastName,
-      email:         email,
-      password:      password,
-      mobile:        mobile,
-      date_of_birth: dob
-    };
-
-    // Send POST request
-    axios.post("http://localhost/SE_cenima_booking/server/controllers/user/create_user.php", payload)
-      .then((res) => {
-        if (res.data && res.data.success) {
-          msg.textContent = "Registration successful! You can now log in.";
-          form.reset();
-        } else {
-          msg.textContent = res.data.error || "Registration failed.";
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-        msg.textContent = "An error occurred. Please try again.";
-      });
-  });
+  
+  // Set max date for date of birth
+  Utils.setMaxDateToday("date-of-birth");
+  
+  form.addEventListener("submit", handleRegistration);
 });
+
+// Handle registration form submission
+async function handleRegistration(event) {
+  event.preventDefault();
+
+  // Get form values
+  const formData = {
+    first_name: event.target["first-name"].value.trim(),
+    last_name: event.target["last-name"].value.trim(),
+    email: event.target["email"].value.trim(),
+    password: event.target["password"].value,
+    confirm_password: event.target["confirm-password"].value,
+    mobile: event.target["mobile"].value.trim(),
+    date_of_birth: event.target["date-of-birth"].value
+  };
+
+  // Simple validation
+  if (formData.password !== formData.confirm_password) {
+    Utils.showMessage("message", "Passwords do not match.", true);
+    return;
+  }
+
+  // Remove confirm_password from payload
+  const { confirm_password, ...payload } = formData;
+
+  try {
+    const response = await Utils.apiCall(`${API_BASE}/auth`, {
+      method: 'POST',
+      data: payload
+    });
+
+    if (response.success) {
+      Utils.showMessage("message", "Registration successful! You can now log in.");
+      event.target.reset();
+    } else {
+      Utils.showMessage("message", response.error || "Registration failed.", true);
+    }
+  } catch (error) {
+    console.error("Registration error:", error);
+    const errorMessage = error.message || "An error occurred. Please try again.";
+    Utils.showMessage("message", errorMessage, true);
+  }
+}

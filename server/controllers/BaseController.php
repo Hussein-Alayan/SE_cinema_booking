@@ -1,5 +1,6 @@
 <?php
 require_once(__DIR__ . "/../bootstrap.php");
+require_once(__DIR__ . '/../services/ValidationService.php');
 
 
 //which HTTP methods you support
@@ -21,9 +22,7 @@ abstract class BaseController
         $this->setOptionalFields();
     }
 
-    /**
-     * Main entry point for the controller
-     */
+
     public function handleRequest()
     {
         try {
@@ -42,20 +41,13 @@ abstract class BaseController
                     break;
                 case 'post':
                     $this->handlePost();
-                    break;
-                case 'put':
-                    $this->handlePut();
-                    break;
-                case 'delete':
-                    $this->handleDelete();
-                    break;
                 default:
-                    $this->respondMethodNotAllowed();
+                    ResponseService::methodNotAllowed();
             }
         } catch (ValidationException $e) {
-            $this->respondBadRequest($e->getMessage());
+            ResponseService::error($e->getMessage(), 400);
         } catch (Exception $e) {
-            $this->respondServerError($e->getMessage());
+            ResponseService::error($e->getMessage(), 500);
         }
     }
 
@@ -64,7 +56,7 @@ abstract class BaseController
     {
         $currentMethod = strtolower($_SERVER['REQUEST_METHOD']);
         if (!in_array($currentMethod, $this->allowedMethods)) {
-            $this->respondMethodNotAllowed();
+            ResponseService::methodNotAllowed();
         }
     }
 
@@ -79,29 +71,13 @@ abstract class BaseController
         return $_GET;
     }
 
-    protected function validateRequiredFields($data)
-    {
-        $missing = [];
-        foreach ($this->requiredFields as $field) {
-            if (!isset($data[$field]) || empty($data[$field])) {
-                $missing[] = $field;
-            }
-        }
-
-        if (!empty($missing)) {
-            throw new ValidationException('Missing required fields: ' . implode(', ', $missing));
-        }
-
-        return $data;
-    }
-
     protected function getIdFromQuery()
     {
         $params = $this->getQueryParams();
         $id = $params['id'] ?? null;
 
         if (!$id) {
-            throw new ValidationException('ID is required');
+            ResponseService::error('ID is required', 400);
         }
 
         return $id;
@@ -116,71 +92,10 @@ abstract class BaseController
         $model = $this->modelClass::find($id);
 
         if (!$model) {
-            $this->respondNotFound();
+            ResponseService::notFound();
         }
 
         return $model;
-    }
-
-    protected function respondSuccess($data = null, $message = 'Success', $statusCode = 200)
-    {
-        http_response_code($statusCode);
-        $response = [
-            'success' => true,
-            'message' => $message
-        ];
-
-        if ($data !== null) {
-            $response['data'] = $data;
-        }
-
-        echo json_encode($response);
-        exit;
-    }
-
-    protected function respondCreated($data = null, $message = 'Created successfully')
-    {
-        $this->respondSuccess($data, $message, 201);
-    }
-
-    protected function respondBadRequest($message = 'Bad request')
-    {
-        http_response_code(400);
-        echo json_encode([
-            'success' => false,
-            'error' => $message
-        ]);
-        exit;
-    }
-
-    protected function respondNotFound($message = 'Not found')
-    {
-        http_response_code(404);
-        echo json_encode([
-            'success' => false,
-            'error' => $message
-        ]);
-        exit;
-    }
-
-    protected function respondServerError($message = 'Server error')
-    {
-        http_response_code(500);
-        echo json_encode([
-            'success' => false,
-            'error' => $message
-        ]);
-        exit;
-    }
-
-    protected function respondMethodNotAllowed()
-    {
-        http_response_code(405);
-        echo json_encode([
-            'success' => false,
-            'error' => 'Method not allowed'
-        ]);
-        exit;
     }
 
     abstract protected function setAllowedMethods();
@@ -191,21 +106,11 @@ abstract class BaseController
     //http methods
     protected function handleGet()
     {
-        $this->respondMethodNotAllowed();
+        ResponseService::methodNotAllowed();
     }
 
     protected function handlePost()
     {
-        $this->respondMethodNotAllowed();
-    }
-
-    protected function handlePut()
-    {
-        $this->respondMethodNotAllowed();
-    }
-
-    protected function handleDelete()
-    {
-        $this->respondMethodNotAllowed();
+        ResponseService::methodNotAllowed();
     }
 }

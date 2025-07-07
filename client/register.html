@@ -5,15 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Register – SE Cinema Booking</title>
   
-  <link rel="stylesheet" href="../css/base.css" />
-  <link rel="stylesheet" href="../css/components.css" />
-  <link rel="stylesheet" href="../css/register.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/pages/register.css" />
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script defer src="../js/registration.js"></script>
+  <script defer src="js/base.js"></script>
+  <script defer src="js/registration.js"></script>
 </head>
 <body class="page-register">
-  
+  <div id="navbar"></div>
 
   <div class="container text-center">
     <h1>Smart Cinema</h1>
@@ -62,7 +65,7 @@
       <button type="submit" class="btn btn--primary mt-2">Sign Up</button>
 
      
-      <p class="message mt-1"></p>
+      <p id="message" class="mt-1"></p>
 
       <p class="mt-1">
         Already have an account? <a href="login.html">Login here</a>
@@ -71,5 +74,6 @@
     </form>
   </div>
 
+  <div id="footer"></div>
 </body>
 </html>
