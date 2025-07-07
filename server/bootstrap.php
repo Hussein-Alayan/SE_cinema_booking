@@ -1,20 +1,24 @@
 <?php
-require_once("connection/config.php");
+require_once(__DIR__ . "/connection/config.php");
 
-require_once("exceptions/ValidationException.php");
+require_once(__DIR__ . "/exceptions/ValidationException.php");
 
-require_once("models/Model.php");
+require_once(__DIR__ . "/models/Model.php");
 
 // Load all models
-require_once("models/User.php");
-require_once("models/Movie.php");
-require_once("models/Showtime.php");
-require_once("models/Booking.php");
-require_once("models/Seat.php");
-require_once("models/Auditorium.php");
-require_once("models/PaymentMethod.php");
-require_once("models/BookingSeat.php");
-require_once("models/SeatLock.php");
+require_once(__DIR__ . "/models/User.php");
+require_once(__DIR__ . "/models/Movie.php");
+require_once(__DIR__ . "/models/Showtime.php");
+require_once(__DIR__ . "/models/Booking.php");
+require_once(__DIR__ . "/models/Seat.php");
+require_once(__DIR__ . "/models/Auditorium.php");
+require_once(__DIR__ . "/models/PaymentMethod.php");
+require_once(__DIR__ . "/models/BookingSeat.php");
+require_once(__DIR__ . "/models/SeatLock.php");
+
+// Load services
+require_once(__DIR__ . "/services/ResponseService.php");
+require_once(__DIR__ . "/services/ValidationService.php");
 
 // Set connection once for all models
 global $mysqli;
@@ -27,13 +31,13 @@ ini_set('display_errors', 0);
 // timezone
 date_default_timezone_set('UTC');
 
-//CORS
-if (isset($_SERVER['HTTP_ORIGIN'])) {
-    header('Access-Control-Allow-Origin: ' . $_SERVER['HTTP_ORIGIN']);
-    header('Access-Control-Allow-Credentials: true');
-    header('Access-Control-Allow-Headers: Content-Type, Authorization');
-    header('Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE');
-}
+//CORS - More permissive for development
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Credentials: true');
+header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
+header('Access-Control-Allow-Methods: GET, POST');
+
+// Handle preflight OPTIONS requests
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
     exit;
